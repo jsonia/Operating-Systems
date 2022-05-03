@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
             if(p->burstTimeRemaining >= quantum_length ){
                 p->burstTimeRemaining = p->burstTimeRemaining - quantum_length;
                 if(p->isFirstexec == true){
-                    printf("%s", "its first exec");
+                   // printf("%s", "its first exec");
                     p->response_time = t - p->arrival_time;
                     p->waiting_time = t - p->arrival_time;
                     p->isFirstexec = false;
@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
                 
                 struct process *temp;
                 TAILQ_FOREACH(temp, &list, pointers) {
-                    printf(" %d\n", temp->pid);
+                   // printf(" %d\n", temp->pid);
                 }
                 
                 //if process complete mark 0
@@ -242,8 +242,8 @@ int main(int argc, char *argv[])
                     p->lastExecutionTime = t;
                     TAILQ_INSERT_TAIL(&list, p, pointers);
                 }
-                printf("%d", p->pid);
-                printf("%2u", p->response_time);
+               // printf("%d", p->pid);
+               // printf("%2u", p->response_time);
             }
             
             else if(p->burstTimeRemaining < quantum_length){
@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
     
     for(u32 i = 0; i< size; i++){
         p = &data[i];
-        printf("Average res time: %.2u\n", p->response_time);
+       // printf("Average res time: %.2u\n", p->response_time);
         total_waiting_time = total_waiting_time + p->waiting_time;
         total_response_time = total_response_time + p->response_time;
     }
