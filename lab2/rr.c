@@ -11,7 +11,7 @@
 
 typedef uint32_t u32;
 typedef int32_t i32;
-
+typedef int (*compfn)(const void*, const void*);
 struct process {
   u32 pid;
   u32 arrival_time;
@@ -134,7 +134,17 @@ void init_processes(const char *path,
   munmap((void *)data, size);
   close(fd);
 }
+int compare(struct process *elem1, struct process *elem2)
+  {
+     if ( elem1->arrival_time < elem2->arrival_time)
+        return -1;
 
+     else if (elem1->arrival_time > elem2->arrival_time)
+        return 1;
+
+     else
+        return 0;
+  }
 int main(int argc, char *argv[])
 {
   if (argc != 3) {
@@ -143,7 +153,7 @@ int main(int argc, char *argv[])
   struct process *data;
   u32 size;
   init_processes(argv[1], &data, &size);
-
+  printf("size %d\n", size);
   u32 quantum_length = next_int_from_c_str(argv[2]);
 
   struct process_list list;
@@ -170,11 +180,19 @@ int main(int argc, char *argv[])
    /* for (u32 i = 0; i < size; ++i) {
       p = &data[i];
         printf("Average waiting time: %.2u\n", p->lastExecutionTime);}*/
-    
+    //printf("%d", sizeof(struct process));
+
+  // sort the process based on arrival time 
+    qsort((void *) data,              // Beginning address of array
+     size,                                 // Number of elements in array
+     sizeof(struct process),              // Size of each element
+     (compfn)compare );   
     
     u32 t = 0;
     for(u32 i = 0; i< size; i++){
+      
         p = &data[i];
+       printf("process id %d arrival %d\n", p->pid, p->arrival_time);
               if (p->arrival_time == t) {
         TAILQ_INSERT_TAIL(&list, p, pointers);
                   p->inQueue = true;
