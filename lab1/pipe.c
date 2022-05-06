@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
                 if(WEXITSTATUS(status)){
                     fprintf(stderr,"Failed to run \"%s\", Error: %s\n",argv[idx],strerror(WEXITSTATUS(status)));
                     close(fds[0]);
-                    break;
+                    exit(WEXITSTATUS(status));
                 }
             }
         }
