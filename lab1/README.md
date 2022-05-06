@@ -4,7 +4,7 @@ This project contains the low level code performed by the pipe (|) operator in s
 
 ## Building
 
-`make` builds thje code and creates a pipe executable
+`make` builds the code and creates a pipe executable
 
 ## Running
 
