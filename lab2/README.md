@@ -1,16 +1,18 @@
 # You Spin Me Round Robin
 
-One line description of this code.
+This code implements the Round Robin Algorithm to schedule processes.
 
 ## Building
 
-Explain briefly how to build your program.
+`make` We use make command to build the program
 
 ## Running
+`./rr processes.txt 5` this command runs the round robin with 5 quantum length
+The above command should give the following output-
+`Average waiting time: 5.50`
+`Average response time: 3.25`
 
-Show an example run of your program on the given `processes.txt` with whatever
-quantum length you want. Show the output you should expect.
 
 ## Cleaning up
 
-Explain briefly how to clean up all binary files.
+`make clean` Cleans up all the binary files
