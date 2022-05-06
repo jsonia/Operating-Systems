@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
   struct process *data;
   u32 size;
   init_processes(argv[1], &data, &size);
-  printf("size %d\n", size);
+  //printf("size %d\n", size);
   u32 quantum_length = next_int_from_c_str(argv[2]);
 
   struct process_list list;
@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
     for(u32 i = 0; i< size; i++){
       
         p = &data[i];
-       printf("process id %d arrival %d\n", p->pid, p->arrival_time);
+      // printf("process id %d arrival %d\n", p->pid, p->arrival_time);
               if (p->arrival_time == t) {
         TAILQ_INSERT_TAIL(&list, p, pointers);
                   p->inQueue = true;
