@@ -20,7 +20,7 @@ struct hash_table_entry {
 
 struct hash_table_v1 {
 	struct hash_table_entry entries[HASH_TABLE_CAPACITY];
-    static pthread_mutex_t foo_mutex;
+    pthread_mutex_t foo_mutex;
 };
 
 struct hash_table_v1 *hash_table_v1_create()
