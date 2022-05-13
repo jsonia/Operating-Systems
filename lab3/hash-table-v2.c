@@ -15,6 +15,7 @@ SLIST_HEAD(list_head, list_entry);
 
 struct hash_table_entry {
 	struct list_head list_head;
+    pthread_mutex_t foo_mutex;
 };
 
 struct hash_table_v2 {
@@ -28,6 +29,7 @@ struct hash_table_v2 *hash_table_v2_create()
 	for (size_t i = 0; i < HASH_TABLE_CAPACITY; ++i) {
 		struct hash_table_entry *entry = &hash_table->entries[i];
 		SLIST_INIT(&entry->list_head);
+        pthread_mutex_init(&entry->foo_mutex, NULL);  //some edition here
 	}
 	return hash_table;
 }
@@ -61,7 +63,7 @@ bool hash_table_v2_contains(struct hash_table_v2 *hash_table,
                             const char *key)
 {
 	struct hash_table_entry *hash_table_entry = get_hash_table_entry(hash_table, key);
-	struct list_head *list_head = &hash_table_entry->list_head;
+	struct list_head *list_head = &hash_table_entry->list_head; ///
 	struct list_entry *list_entry = get_list_entry(hash_table, key, list_head);
 	return list_entry != NULL;
 }
@@ -73,10 +75,12 @@ void hash_table_v2_add_entry(struct hash_table_v2 *hash_table,
 	struct hash_table_entry *hash_table_entry = get_hash_table_entry(hash_table, key);
 	struct list_head *list_head = &hash_table_entry->list_head;
 	struct list_entry *list_entry = get_list_entry(hash_table, key, list_head);
-
+    
+    pthread_mutex_lock(&hash_table_entry->foo_mutex);
 	/* Update the value if it already exists */
 	if (list_entry != NULL) {
 		list_entry->value = value;
+        pthread_mutex_unlock(&hash_table_entry->foo_mutex);
 		return;
 	}
 
@@ -84,6 +88,7 @@ void hash_table_v2_add_entry(struct hash_table_v2 *hash_table,
 	list_entry->key = key;
 	list_entry->value = value;
 	SLIST_INSERT_HEAD(list_head, list_entry, pointers);
+    pthread_mutex_unlock(&hash_table_entry->foo_mutex);
 }
 
 uint32_t hash_table_v2_get_value(struct hash_table_v2 *hash_table,
