@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/queue.h>
-
+#include <pthread.h>
 struct list_entry {
 	const char *key;
 	uint32_t value;
