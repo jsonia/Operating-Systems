@@ -82,7 +82,7 @@ void hash_table_v2_add_entry(struct hash_table_v2 *hash_table,
 	if (list_entry != NULL) {
 		list_entry->value = value;
         err = pthread_mutex_unlock(&hash_table_entry->foo_mutex);
-        if(err) exit(0);
+        if(err) {exit(0);}
 		return;
 	}
 
@@ -91,7 +91,7 @@ void hash_table_v2_add_entry(struct hash_table_v2 *hash_table,
 	list_entry->value = value;
 	SLIST_INSERT_HEAD(list_head, list_entry, pointers);
     err = pthread_mutex_unlock(&hash_table_entry->foo_mutex);
-    if(err) exit(0);
+    if(err) {exit(0);}
 }
 
 uint32_t hash_table_v2_get_value(struct hash_table_v2 *hash_table,
