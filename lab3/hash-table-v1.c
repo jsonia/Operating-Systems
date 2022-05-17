@@ -72,7 +72,8 @@ bool hash_table_v1_contains(struct hash_table_v1 *hash_table,
 void hash_table_v1_add_entry(struct hash_table_v1 *hash_table,
                              const char *key,
                              uint32_t value)
-{   pthread_mutex_lock(&hash_table->foo_mutex);
+{   int err = pthread_mutex_lock(&hash_table->foo_mutex); //using err
+    if(err) exit(0); //is exiting with 0 fine?
 	struct hash_table_entry *hash_table_entry = get_hash_table_entry(hash_table, key);
 	struct list_head *list_head = &hash_table_entry->list_head;
 	struct list_entry *list_entry = get_list_entry(hash_table, key, list_head);
@@ -87,7 +88,8 @@ void hash_table_v1_add_entry(struct hash_table_v1 *hash_table,
 	list_entry->key = key;
 	list_entry->value = value;
 	SLIST_INSERT_HEAD(list_head, list_entry, pointers);
-    pthread_mutex_unlock(&hash_table->foo_mutex);
+    err = pthread_mutex_unlock(&hash_table->foo_mutex); // adding err here as well
+    if(err) exit(0);
 }
 
 uint32_t hash_table_v1_get_value(struct hash_table_v1 *hash_table,
