@@ -23,6 +23,8 @@ of a run where the base hash table completes in between 1-2 seconds.
 
 ## First Implementation
 
+In the first implementation whenever we need to add an entry to the hastable using a thread that thread acquire the lock get the hashtable entry insert the value and then releases the lock. This strategy will work as when a thread is doing the insert operation no other thread can access the add_entry code thus there will not be any issue of missing entries.
+
 Describe your first implementation strategy here (the one with a single mutex).
 Argue why your strategy is correct.
 
