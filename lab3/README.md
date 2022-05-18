@@ -28,6 +28,10 @@ Argue why your strategy is correct.
 
 ### Performance
 
+There is a speedup by 0.92 times on using low number of threads as compared to using high number of threads.
+
+since in the first implementation when the thread is locking the critical section other threads can not perform any operation even if they have to insert at other hashkeys thus if we increase the number of threads waiting time for each thread will increase and overall time will increase with high number of threads.
+
 Run the tester such that the base hash table completes in 1-2 seconds.
 Report the relative speedup (or slow down) with a low number of threads and a
 high number of threads. Note that the amount of work (`-t` times `-s`) should
