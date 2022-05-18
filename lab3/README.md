@@ -23,7 +23,7 @@ of a run where the base hash table completes in between 1-2 seconds.
 
 ## First Implementation
 
-In the first implementation whenever we need to add an entry to the hastable using a thread that thread acquire the lock get the hashtable entry insert the value and then releases the lock. This strategy will work as when a thread is doing the insert operation no other thread can access the add_entry code thus there will not be any issue of missing entries.
+In the first implementation whenever we need to add an entry to the hastable using a thread that thread acquire the lock get the hashtable entry insert the value and then releases the lock. This strategy will work as when a thread is doing the insert operation no other thread can access the add_entry code thus there will not be any conflicts and no issue of missing entries.
 
 Describe your first implementation strategy here (the one with a single mutex).
 Argue why your strategy is correct.
@@ -40,6 +40,7 @@ high number of threads. Note that the amount of work (`-t` times `-s`) should
 remain constant. Explain any differences between the two.
 
 ## Second Implementation
+In the second implementation, instead of having a single lock for the entire hashtable, we instead add a lock per hash table entry. Thus if the insert operation is being performed at an entry only that entry will be locked and if some other thread wants to insert at other entry they can do so by acquiring the lock at that entry. This way there will not be any conflicts in inserting and there will not be any miss. 
 
 Describe your second implementation strategy here (the one with a multiple
 mutexes). Argue why your strategy is correct.
@@ -55,4 +56,4 @@ implementation and your first, which respect why you get a performance increase.
 
 ## Cleaning up
 
-Explain briefly how to clean up all binary files.
+`make clean` this command will clean up all the binary files
