@@ -7,6 +7,15 @@ One line description of this code.
 Explain briefly how to build your program.
 
 ## Running
+./hash-table-tester -t 8 -s 20000
+Generation: 107,422 usec
+Hash table base: 1,197,457 usec
+  - 0 missing
+Hash table v1: 1,879,044 usec
+  - 0 missing
+Hash table v2: 246,956 usec
+  - 0 missing
+
 
 Show an example run of your (completed) program on using the `-t` and `-s` flags
 of a run where the base hash table completes in between 1-2 seconds.
