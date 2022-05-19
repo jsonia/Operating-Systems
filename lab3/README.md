@@ -23,7 +23,7 @@ of a run where the base hash table completes in between 1-2 seconds.
 
 ## First Implementation
 
-This implementation uses only one mutex lock. In the first implementation whenever we need to add an entry to the hastable using a thread that thread acquire the lock on the complete hash table, get the hashtable entry where the value need to be inserted, insert the value and then releases the lock.\
+This implementation uses only one mutex lock. In the first implementation whenever we need to add an entry to the hastable using a thread that thread acquire the lock on the complete hash table, get the hashtable entry where the value need to be inserted, insert the value and then releases the lock.
 
 This strategy will work as when a thread is doing the insert operation no other thread can access the add_entry code thus there will not be any conflicts and no issue of missing entries.
 
