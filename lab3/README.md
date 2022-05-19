@@ -1,10 +1,10 @@
 # Hash Hash Hash
 
-One line description of this code.
+In this assignment we make the hash table implementation safe to use concurrently.
 
 ## Building
 
-Explain briefly how to build your program.
+`make` command is used to build the code.
 
 ## Running
 `command:`./hash-table-tester -t 8 -s 20000 \
@@ -40,7 +40,9 @@ high number of threads. Note that the amount of work (`-t` times `-s`) should
 remain constant. Explain any differences between the two.
 
 ## Second Implementation
-In the second implementation, instead of having a single lock for the entire hashtable, we instead add a lock per hash table entry. Thus if the insert operation is being performed at an entry only that entry will be locked and if some other thread wants to insert at other entry they can do so by acquiring the lock at that entry. This way there will not be any conflicts in inserting and there will not be any miss. 
+
+In the second implementation, instead of having a single lock for the entire hashtable, we instead add a lock per hash table entry. Thus if the insert operation is being performed at an entry only that entry will be locked and if some other thread wants to insert at other entry they can do so by acquiring the lock at that entry. This way there will not be any conflicts in inserting and there will not be any miss and also its performance will increase in terms of speed. 
+
 
 Describe your second implementation strategy here (the one with a multiple
 mutexes). Argue why your strategy is correct.
