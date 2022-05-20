@@ -22,13 +22,14 @@ Show an example run of your (completed) program on using the `-t` and `-s` flags
 of a run where the base hash table completes in between 1-2 seconds.
 
 ## First Implementation
+### Strategy
+- Only one mutex lock is used.
+- lock is added as soon as we enter the `hash_table_v1_add_entry()` function. Lock is released before the return statement(incase the value already exist) and before leaving the `hash_table_v1_add_entry()` .
 
-This implementation uses only one mutex lock. In the first implementation whenever we need to add an entry to the hastable using a thread that thread acquire the lock on the complete hash table, get the hashtable entry where the value need to be inserted, insert the value and then releases the lock.
+This implementation uses only one mutex lock. Whenever we need to add an entry to the hastable using a thread that thread acquire the lock on the complete hash table, get the hashtable entry where the value need to be inserted, insert the value and then releases the lock.
+### Why the Strategy is correct
+This strategy will work as when a thread is accessing the hashtable and doing the insert operation no other thread can access the hash table and  add_entry code thus there will not be any conflicts and no issue of missing entries.
 
-This strategy will work as when a thread is doing the insert operation no other thread can access the add_entry code thus there will not be any conflicts and no issue of missing entries.
-
-Describe your first implementation strategy here (the one with a single mutex).
-Argue why your strategy is correct.
 
 ### Performance
 
