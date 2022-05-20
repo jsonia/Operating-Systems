@@ -29,7 +29,9 @@ struct hash_table_v2 *hash_table_v2_create()
 	for (size_t i = 0; i < HASH_TABLE_CAPACITY; ++i) {
 		struct hash_table_entry *entry = &hash_table->entries[i];
 		SLIST_INIT(&entry->list_head);
-        pthread_mutex_init(&entry->foo_mutex, NULL);  //some edition here
+         
+        int err = pthread_mutex_init(&entry->foo_mutex, NULL);  //some edition here
+        if(err) exit(err);
 	}
 	return hash_table;
 }
@@ -73,11 +75,12 @@ void hash_table_v2_add_entry(struct hash_table_v2 *hash_table,
                              uint32_t value)
 {
 	struct hash_table_entry *hash_table_entry = get_hash_table_entry(hash_table, key);
-	struct list_head *list_head = &hash_table_entry->list_head;
-	struct list_entry *list_entry = get_list_entry(hash_table, key, list_head);
     /*lock here*/
     int err = pthread_mutex_lock(&hash_table_entry->foo_mutex); //adding err
     if(err) exit(err);
+	struct list_head *list_head = &hash_table_entry->list_head;
+	struct list_entry *list_entry = get_list_entry(hash_table, key, list_head);
+    
 	/* Update the value if it already exists */
 	if (list_entry != NULL) {
 		list_entry->value = value;
@@ -115,7 +118,8 @@ void hash_table_v2_destroy(struct hash_table_v2 *hash_table)
 			SLIST_REMOVE_HEAD(list_head, pointers);
 			free(list_entry);
 		}
-        pthread_mutex_destroy(&entry->foo_mutex);
+        int err = pthread_mutex_destroy(&entry->foo_mutex);
+        if(err) exit(err);
 	}
 	free(hash_table);
 }
