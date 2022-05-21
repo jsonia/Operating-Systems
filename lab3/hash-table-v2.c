@@ -31,7 +31,7 @@ struct hash_table_v2 *hash_table_v2_create()
 		SLIST_INIT(&entry->list_head);
          
         int err = pthread_mutex_init(&entry->foo_mutex, NULL);  //some edition here
-        if(err) exit(err);
+        if(err) {exit(err);}
 	}
 	return hash_table;
 }
@@ -75,6 +75,10 @@ void hash_table_v2_add_entry(struct hash_table_v2 *hash_table,
                              uint32_t value)
 {
 	struct hash_table_entry *hash_table_entry = get_hash_table_entry(hash_table, key);
+    
+    
+    
+    
     /*lock here*/
     int err = pthread_mutex_lock(&hash_table_entry->foo_mutex); //adding err
     if(err) exit(err);
@@ -119,7 +123,7 @@ void hash_table_v2_destroy(struct hash_table_v2 *hash_table)
 			free(list_entry);
 		}
         int err = pthread_mutex_destroy(&entry->foo_mutex);
-        if(err) exit(err);
+        if(err) {exit(err);}
 	}
 	free(hash_table);
 }
