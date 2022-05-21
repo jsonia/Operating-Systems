@@ -33,18 +33,15 @@ This strategy will work as when a thread is accessing the hashtable and doing th
 
 ### Performance
 
-There is a speedup by 0.92 times on using low number of threads as compared to using high number of threads.
-
-since in the first implementation when the thread is locking the critical section other threads can not perform any operation even if they have to insert at other hashkeys thus if we increase the number of threads waiting time for each thread will increase and overall time will increase with high number of threads.
-
-Run the tester such that the base hash table completes in 1-2 seconds.
-Report the relative speedup (or slow down) with a low number of threads and a
-high number of threads. Note that the amount of work (`-t` times `-s`) should
-remain constant. Explain any differences between the two.
+v1 takes more time than the base implementation both with the lower number and the higher number of threads. But if we increase the number of threads keeping the amount of work same the time for v1 increases further more since in the first implementation when the thread is locking the critical section other threads can not perform any operation even if they have to insert at other hashkeys as a result the waiting time increases for each thread.
+ 
 
 ## Second Implementation
 
-In the second implementation, instead of having a single lock for the entire hashtable, we instead add a lock per hash table entry. Thus if the insert operation is being performed at an entry only that entry will be locked and if some other thread wants to insert at other entry they can do so by acquiring the lock at that entry. This way there will not be any conflicts in inserting and there will not be any miss and also its performance will increase in terms of speed. 
+### Strategy
+In the second implementation, instead of having a single lock for the entire hashtable, we instead add a lock per hash table entry. 
+
+Thus if the insert operation is being performed at an entry only that entry will be locked and if some other thread wants to insert at other entry they can do so by acquiring the lock at that entry. This way there will not be any conflicts in inserting and there will not be any miss and also its performance will increase in terms of speed. 
 
 
 Describe your second implementation strategy here (the one with a multiple
