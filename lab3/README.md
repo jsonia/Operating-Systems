@@ -38,7 +38,7 @@ v1 takes more time than the base implementation both with the lower number and t
 ## Second Implementation
 
 ### Strategy
-- In the second implementation, instead of having a single lock for the entire hashtable, we instead use multiple locks and add a lock per hash table entry. 
+- In the second implementation, instead of having a single lock for the entire hashtable, we instead use `multiple locks` and add a lock per hash table entry. 
 - we first get the hashtable entry using `get_hash_table_entry()` then apply the lock corresponding to that hash table entry 
 - lock of the corresponding entry is released after the insert operation is performed at that entry
 - all the locks are destroyed in the destroy function to free the memory
