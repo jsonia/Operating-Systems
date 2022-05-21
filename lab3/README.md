@@ -11,9 +11,9 @@ In this assignment we make the hash table implementation safe to use concurrentl
 `output:`\
 Generation: 107,422 usec\
 Hash table base: 1,197,457 usec\
-  `-` 0 missing
+  `-` 0 missing\
 Hash table v1: 1,879,044 usec\
-  `-` 0 missing
+  `-` 0 missing\
 Hash table v2: 246,956 usec\
   `-` 0 missing`
 
