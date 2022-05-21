@@ -18,8 +18,6 @@ Hash table v2: 246,956 usec\
   `-` 0 missing`
 
 
-Show an example run of your (completed) program on using the `-t` and `-s` flags
-of a run where the base hash table completes in between 1-2 seconds.
 
 ## First Implementation
 ### Strategy
