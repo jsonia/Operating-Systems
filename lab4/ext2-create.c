@@ -259,9 +259,9 @@ void write_block_group_descriptor_table(int fd) {
 
 	/* These are intentionally incorrectly set as 0, you should set them
 	   correctly and delete this comment */
-	block_group_descriptor.bg_block_bitmap = 3;
-	block_group_descriptor.bg_inode_bitmap = 4;
-	block_group_descriptor.bg_inode_table = 5-20;
+	block_group_descriptor.bg_block_bitmap = BLOCK_BITMAP_BLOCKNO  ;
+	block_group_descriptor.bg_inode_bitmap = INODE_BITMAP_BLOCKNO ;
+	block_group_descriptor.bg_inode_table = INODE_TABLE_BLOCKNO;
 	block_group_descriptor.bg_free_blocks_count = NUM_FREE_BLOCKS;
 	block_group_descriptor.bg_free_inodes_count = NUM_FREE_INODES;
 	block_group_descriptor.bg_used_dirs_count = 2;
