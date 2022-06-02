@@ -275,8 +275,8 @@ void write_block_group_descriptor_table(int fd) {
 void write_block_bitmap(int fd) {
 	/* This is all you */
     
-    struct ext2_super_block super;  /* the super block */
-    struct ext2_group_desc group;   /* the group descritopr */
+   // struct ext2_super_block super;  /* the super block */
+    //struct ext2_group_desc group;   /* the group descritopr */
     u8 *bitmap;
 //    lseek(fd, 1024, SEEK_SET);                    /* position head above super-block */
 //    read(fd, &super, sizeof(super));              /* read super-block */
