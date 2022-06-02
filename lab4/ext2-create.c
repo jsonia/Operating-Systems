@@ -294,16 +294,16 @@ void write_block_bitmap(int fd) {
      /* read bitmap from disk */
     
     for(int i = 0; i<2; i++){
-        bitmap[i] = u8(0xFF);
+        bitmap[i] = 0xFF;
     }
     bitmap[2] = 0xFE;
     for(int i = 3; i<128; i++){
-        bitmap[i] = u8(0x00)
+        bitmap[i] = 0x00;
     }
     for(int i = 128; i<1024; i++){
-        bitmap[i] = u8(0xFF);
+        bitmap[i] = 0xFF;
     }
-write(fd, bitmap, block_size);
+write(fd, bitmap, 1024);
     free(bitmap);
 }
 
@@ -314,15 +314,15 @@ void write_inode_bitmap(int fd) {
     bitmap = malloc(1024);
     lseek(fd, INODE_BITMAP_BLOCKNO, SEEK_SET);
     for(int i = 0; i<1; i++){
-        bitmap[i] = u8(0xFF);
+        bitmap[i] = 0xFF;
     }
     bitmap[1] =0x38;
     bitmap[2] = 0x00;
     for(int i = 3; i<16; i++){
-        bitmap[i] = u8(0x00)
+        bitmap[i] = 0x00;
     }
     for(int i = 16; i<1024; i++){
-        bitmap[i] = u8(0xFF);
+        bitmap[i] = 0xFF;
     }
 write(fd, bitmap, block_size);
     free(bitmap);
