@@ -324,7 +324,7 @@ void write_inode_bitmap(int fd) {
     for(int i = 16; i<1024; i++){
         bitmap[i] = 0xFF;
     }
-write(fd, bitmap, block_size);
+write(fd, bitmap, 1024);
     free(bitmap);
 }
 
