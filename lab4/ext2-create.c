@@ -212,8 +212,8 @@ void write_superblock(int fd) {
 	superblock.s_mnt_count         = 0; /* Number of times mounted so far */
 	superblock.s_max_mnt_count     = -1; /* Make this unlimited */
 	superblock.s_magic             = 0xEF53; /* ext2 Signature */ //EXT2_SUPER_MAGIC
-	superblock.s_state             = 0; /* File system is clean */
-	superblock.s_errors            = 0; /* Ignore the error (continue on) */
+	superblock.s_state             = 1; /* File system is clean */
+	superblock.s_errors            = 0x0010; /* Ignore the error (continue on) */
 	superblock.s_minor_rev_level   = 0; /* Leave this as 0 */
 	superblock.s_lastcheck         = get_current_time(); /* Last check time */
 	superblock.s_checkinterval     = 1; /* Force checks by making them every 1 second */
