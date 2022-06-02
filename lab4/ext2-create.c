@@ -278,19 +278,19 @@ void write_block_bitmap(int fd) {
     struct ext2_super_block super;  /* the super block */
     struct ext2_group_desc group;   /* the group descritopr */
     u8 *bitmap;
-    lseek(fd, 1024, SEEK_SET);                    /* position head above super-block */
-    read(fd, &super, sizeof(super));              /* read super-block */
-
-        if (super.s_magic != EXT2_SUPER_MAGIC)
-                exit(1); /* bad file system */
-
-    block_size = 1024 << super.s_log_block_size;  /* calculate block size in bytes */
-
-    /* ... [read superblock and group descriptor] ... */
-    lseek(fd, 1024 + block_size, SEEK_SET);  /* position head above the group descriptor block */
-    read(fd, &group, sizeof(group));
-    bitmap = malloc(block_size);    /* allocate memory for the bitmap */
-    lseek(fd, BLOCK_OFFSET(group->bg_block_bitmap), SEEK_SET);
+//    lseek(fd, 1024, SEEK_SET);                    /* position head above super-block */
+//    read(fd, &super, sizeof(super));              /* read super-block */
+//
+//        if (super.s_magic != EXT2_SUPER_MAGIC)
+//                exit(1); /* bad file system */
+//
+//    block_size = 1024 << super.s_log_block_size;  /* calculate block size in bytes */
+//
+//    /* ... [read superblock and group descriptor] ... */
+//    lseek(fd, 1024 + block_size, SEEK_SET);  /* position head above the group descriptor block */
+//    read(fd, &group, sizeof(group));
+    bitmap = malloc(1024);    /* allocate memory for the bitmap */
+    lseek(fd, BLOCK_BITMAP_BLOCKNO, SEEK_SET);
      /* read bitmap from disk */
     
     for(int i = 0; i<2; i++){
