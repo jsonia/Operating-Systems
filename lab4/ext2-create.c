@@ -274,10 +274,58 @@ void write_block_group_descriptor_table(int fd) {
 
 void write_block_bitmap(int fd) {
 	/* This is all you */
+    
+    struct ext2_super_block super;  /* the super block */
+    struct ext2_group_desc group;   /* the group descritopr */
+    u8 *bitmap;
+    lseek(fd, 1024, SEEK_SET);                    /* position head above super-block */
+    read(fd, &super, sizeof(super));              /* read super-block */
+
+        if (super.s_magic != EXT2_SUPER_MAGIC)
+                exit(1); /* bad file system */
+
+    block_size = 1024 << super.s_log_block_size;  /* calculate block size in bytes */
+
+    /* ... [read superblock and group descriptor] ... */
+    lseek(fd, 1024 + block_size, SEEK_SET);  /* position head above the group descriptor block */
+    read(fd, &group, sizeof(group));
+    bitmap = malloc(block_size);    /* allocate memory for the bitmap */
+    lseek(fd, BLOCK_OFFSET(group->bg_block_bitmap), SEEK_SET);
+     /* read bitmap from disk */
+    
+    for(int i = 0; i<2; i++){
+        bitmap[i] = u8(0xFF);
+    }
+    bitmap[2] = 0xFE;
+    for(int i = 3; i<128; i++){
+        bitmap[i] = u8(0x00)
+    }
+    for(int i = 128; i<1024; i++){
+        bitmap[i] = u8(0xFF);
+    }
+write(fd, bitmap, block_size);
+    free(bitmap);
 }
 
 void write_inode_bitmap(int fd) {
 	/* This is all you */
+    
+    u8 *bitmap;
+    bitmap = malloc(1024);
+    lseek(fd, INODE_BITMAP_BLOCKNO, SEEK_SET);
+    for(int i = 0; i<1; i++){
+        bitmap[i] = u8(0xFF);
+    }
+    bitmap[1] =0x38;
+    bitmap[2] = 0x00;
+    for(int i = 3; i<16; i++){
+        bitmap[i] = u8(0x00)
+    }
+    for(int i = 16; i<1024; i++){
+        bitmap[i] = u8(0xFF);
+    }
+write(fd, bitmap, block_size);
+    free(bitmap);
 }
 
 void write_inode(int fd, u32 index, struct ext2_inode *inode) {
