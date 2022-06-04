@@ -294,10 +294,8 @@ void write_block_bitmap(int fd) {
     lseek(fd, 1024*BLOCK_BITMAP_BLOCKNO, SEEK_SET);
 //     /* read bitmap from disk */
 //
-    for(int i = 0; i<2; i++){
-        bitmap[i] = 0xFF;
-    }
-    bitmap[0] = 0x80;
+    
+    bitmap[0] = 0xFF;
     bitmap[1] = 0xFF;
     bitmap[2] = 0xFE;
     for(int i = 3; i<128; i++){
@@ -313,21 +311,21 @@ write(fd, bitmap, 1024);
 void write_inode_bitmap(int fd) {
 	/* This is all you */
     
-//    u8 *bitmap;
-//    bitmap = malloc(1024);
-//    lseek(fd, INODE_BITMAP_BLOCKNO, SEEK_SET);
-//    bitmap[0] = 0x80;
-//
-//    bitmap[1] =0x38;
-//    bitmap[2] = 0x00;
-//    for(int i = 3; i<16; i++){
-//        bitmap[i] = 0x00;
-//    }
-//    for(int i = 16; i<1024; i++){
-//        bitmap[i] = 0xFF;
-//    }
-//    write(fd, bitmap, 1024);
-//    free(bitmap);
+    u8 *bitmap;
+    bitmap = malloc(1024);
+    lseek(fd, 1024*INODE_BITMAP_BLOCKNO, SEEK_SET);
+    bitmap[0] = 0x80;
+
+    bitmap[1] =0x38;
+    bitmap[2] = 0x00;
+    for(int i = 3; i<16; i++){
+        bitmap[i] = 0x00;
+    }
+    for(int i = 16; i<1024; i++){
+        bitmap[i] = 0xFF;
+    }
+    write(fd, bitmap, 1024);
+    free(bitmap);
 }
 
 void write_inode(int fd, u32 index, struct ext2_inode *inode) {
