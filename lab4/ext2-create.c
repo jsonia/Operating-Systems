@@ -301,9 +301,9 @@ void write_block_bitmap(int fd) {
     for(int i = 3; i<127; i++){
         bitmap[i] = 0x00;
     }
-    bitmap[127] = 0x00;
-    bitmap[128] = 0x01;
-    for(int i = 129; i<1024; i++){
+    bitmap[127] = 0x03;
+    
+    for(int i = 128; i<1024; i++){
         bitmap[i] = 0xFF;
     }
 write(fd, bitmap, 1024);
