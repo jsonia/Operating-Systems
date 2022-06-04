@@ -323,7 +323,7 @@ void write_inode_bitmap(int fd) {
     for(int i = 3; i<16; i++){
         bitmap[i] = 0x00;
     }
-    bitmap[15] = 0x01;
+    bitmap[15] = 0x80;
     for(int i = 16; i<1024; i++){
         bitmap[i] = 0xFF;
     }
