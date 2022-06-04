@@ -414,7 +414,7 @@ void write_inode_table(int fd) {
     
     
     struct ext2_inode simlink_node = {0};
-    simlink_node.i_mode = EXT2_S_IFREG
+    simlink_node.i_mode = EXT2_S_IFLNK
                                   | EXT2_S_IRUSR
                                   | EXT2_S_IWUSR
                                   | EXT2_S_IRGRP
