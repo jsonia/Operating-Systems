@@ -290,7 +290,7 @@ void write_block_bitmap(int fd) {
 //    lseek(fd, 1024 + block_size, SEEK_SET);  /* position head above the group descriptor block */
 //    read(fd, &group, sizeof(group));
     bitmap = malloc(1024);    /* allocate memory for the bitmap */
-    lseek(fd, BLOCK_BITMAP_BLOCKNO, SEEK_SET);
+    lseek(fd, BLOCK_BITMAP_BLOCKNO-1, SEEK_SET);
      /* read bitmap from disk */
     
     for(int i = 0; i<2; i++){
@@ -312,7 +312,7 @@ void write_inode_bitmap(int fd) {
     
     u8 *bitmap;
     bitmap = malloc(1024);
-    lseek(fd, INODE_BITMAP_BLOCKNO, SEEK_SET);
+    lseek(fd, INODE_BITMAP_BLOCKNO-1, SEEK_SET);
     for(int i = 0; i<1; i++){
         bitmap[i] = 0xFF;
     }
@@ -324,7 +324,7 @@ void write_inode_bitmap(int fd) {
     for(int i = 16; i<1024; i++){
         bitmap[i] = 0xFF;
     }
-write(fd, bitmap, 1024);
+    write(fd, bitmap, 1024);
     free(bitmap);
 }
 
