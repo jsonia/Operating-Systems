@@ -318,7 +318,7 @@ void write_inode_bitmap(int fd) {
     lseek(fd, 1024*INODE_BITMAP_BLOCKNO, SEEK_SET);
     bitmap[0] = 0xFF;
 
-    bitmap[1] =0xFF;
+    bitmap[1] =0x1F;
     bitmap[2] = 0x00;
     for(int i = 3; i<16; i++){
         bitmap[i] = 0x00;
