@@ -464,7 +464,7 @@ void write_root_dir_block(int fd) {
     bytes_remaining -= parent_entry.rec_len;
     
     struct ext2_dir_entry lf_entry = {0};
-    dir_entry_set(lf_entry, LOST_AND_FOUND_INO, "lost+found");
+    dir_entry_set(lf_entry, LOST_AND_FOUND_INO, "/lost+found");
     dir_entry_write(lf_entry, fd);
 
     bytes_remaining -= lf_entry.rec_len;
