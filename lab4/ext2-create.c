@@ -301,7 +301,7 @@ void write_block_bitmap(int fd) {
     for(int i = 3; i<127; i++){
         bitmap[i] = 0x00;
     }
-    bitmap[128] = 0x01;
+    bitmap[127] = 0x01;
     for(int i = 128; i<1024; i++){
         bitmap[i] = 0xFF;
     }
@@ -317,7 +317,7 @@ void write_inode_bitmap(int fd) {
     lseek(fd, 1024*INODE_BITMAP_BLOCKNO, SEEK_SET);
     bitmap[0] = 0xFF;
 
-    bitmap[1] =0x30;
+    bitmap[1] =0xFF;
     bitmap[2] = 0x00;
     for(int i = 3; i<16; i++){
         bitmap[i] = 0x00;
