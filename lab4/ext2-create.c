@@ -501,27 +501,32 @@ void write_lost_and_found_dir_block(int fd) {
 }
 
 void write_hello_world_file_block(int fd) {
-//    off_t off = BLOCK_OFFSET(HELLO_WORLD_FILE_BLOCKNO);
-//    off = lseek(fd, off, SEEK_SET);
-//    if (off == -1) {
-//        errno_exit("lseek");
-//    }
-//
-//    ssize_t bytes_remaining = BLOCK_SIZE;
-//
-//
-//
-//
-//
-//    struct ext2_dir_entry parent_entry = {0};
-//    dir_entry_set(parent_entry, EXT2_ROOT_INO, "..");
-//    dir_entry_write(parent_entry, fd);
-//
-//    bytes_remaining -= parent_entry.rec_len;
-//
-//    struct ext2_dir_entry fill_entry = {0};
-//    fill_entry.rec_len = bytes_remaining;
-//    dir_entry_write(fill_entry, fd);
+    unsigned char text[1024] = {0};
+        int c;
+        for (c = 0; c < sizeof(text); c++) {
+            text[c] = 0x00;
+        }
+        
+        text[0] = 'H';
+        text[1] = 'e';
+        text[2] = 'l';
+        text[3] = 'l';
+        text[4] = 'o';
+        text[5] = ' ';
+        text[6] = 'w';
+        text[7] = 'o';
+        text[8] = 'r';
+        text[9] = 'l';
+        text[10] = 'd';
+        text[11] = '\n';
+
+        off_t off = BLOCK_OFFSET(HELLO_WORLD_FILE_BLOCKNO);
+        off = lseek(fd, off, SEEK_SET);
+        if (off == -1) {
+            errno_exit("lseek");
+        }
+        
+        write(fd, text, sizeof(text));
 }
 
 int main(int argc, char *argv[]) {
