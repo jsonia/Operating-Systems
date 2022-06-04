@@ -421,13 +421,13 @@ void write_inode_table(int fd) {
                                   | EXT2_S_IROTH;
 
     simlink_node.i_uid = 1000;
-    simlink_node.i_size = 1024;
+    simlink_node.i_size = 11;
     simlink_node.i_atime = current_time;
     simlink_node.i_ctime = current_time;
     simlink_node.i_mtime = current_time;
     simlink_node.i_dtime = 0;
     simlink_node.i_gid = 1000;
-    simlink_node.i_links_count = 0;
+    simlink_node.i_links_count = 1;
     simlink_node.i_blocks = 0; /* These are oddly 512 blocks */
     simlink_node.i_block[0] = 'hell';
     simlink_node.i_block[1] = 'o-wo';
