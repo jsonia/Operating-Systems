@@ -429,17 +429,10 @@ void write_inode_table(int fd) {
     simlink_node.i_gid = 1000;
     simlink_node.i_links_count = 0;
     simlink_node.i_blocks = 0; /* These are oddly 512 blocks */
-    simlink_node.i_block[0] = 'h';
-    simlink_node.i_block[1] = 'e';
-    simlink_node.i_block[2] = 'l';
-    simlink_node.i_block[3] = 'l';
-    simlink_node.i_block[4] = 'o';
-    simlink_node.i_block[5] = '-';
-    simlink_node.i_block[6] = 'w';
-    simlink_node.i_block[7] = 'o';
-    simlink_node.i_block[8] = 'r';
-    simlink_node.i_block[9] = 'l';
-    simlink_node.i_block[10] = 'd';
+    simlink_node.i_block[0] = 'hell';
+    simlink_node.i_block[1] = 'o-wor';
+    simlink_node.i_block[2] = 'ld';
+    
     
     
     write_inode(fd, HELLO_INO , &simlink_node);
