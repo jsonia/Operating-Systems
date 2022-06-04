@@ -381,14 +381,14 @@ void write_inode_table(int fd) {
                                   | EXT2_S_IROTH
                                   | EXT2_S_IXOTH;
     root.i_uid = 0;
-    lost_and_found_inode.i_size = 1024;
+    root.i_size = 1024;
     root.i_atime = current_time;
     root.i_ctime = current_time;
     root.i_mtime = current_time;
     root.i_dtime = 0;
     root.i_gid = 0;
     root.i_links_count = 2;
-    root.i_blocks = 1; /* These are oddly 512 blocks */
+    root.i_blocks = 2; /* These are oddly 512 blocks */
     root.i_block[0] = ROOT_DIR_BLOCKNO;
     write_inode(fd, EXT2_ROOT_INO , &root);
     
@@ -408,7 +408,7 @@ void write_inode_table(int fd) {
     hello_world_node.i_dtime = 0;
     hello_world_node.i_gid = 1000;
     hello_world_node.i_links_count = 1;
-    hello_world_node.i_blocks = 1; /* These are oddly 512 blocks */
+    hello_world_node.i_blocks = 2; /* These are oddly 512 blocks */
     hello_world_node.i_block[0] = HELLO_WORLD_FILE_BLOCKNO;
     write_inode(fd, HELLO_WORLD_FILE_BLOCKNO , &hello_world_node);
     
