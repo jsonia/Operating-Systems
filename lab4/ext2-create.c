@@ -297,11 +297,11 @@ void write_block_bitmap(int fd) {
     
     bitmap[0] = 0xFF;
     bitmap[1] = 0xFF;
-    bitmap[2] = 0xFE;
+    bitmap[2] = 0xFF;
     for(int i = 3; i<127; i++){
         bitmap[i] = 0x00;
     }
-    bitmap[127] = 0x03;
+    bitmap[127] = 0x00;
     for(int i = 128; i<1024; i++){
         bitmap[i] = 0xFF;
     }
