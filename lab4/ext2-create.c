@@ -410,7 +410,7 @@ void write_inode_table(int fd) {
     hello_world_node.i_links_count = 1;
     hello_world_node.i_blocks = 2; /* These are oddly 512 blocks */
     hello_world_node.i_block[0] = HELLO_WORLD_FILE_BLOCKNO;
-    write_inode(fd, HELLO_WORLD_FILE_BLOCKNO , &hello_world_node);
+    write_inode(fd, HELLO_WORLD_INO , &hello_world_node);
     
     
     struct ext2_inode simlink_node = {0};
