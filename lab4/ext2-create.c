@@ -290,7 +290,7 @@ void write_block_bitmap(int fd) {
 //    lseek(fd, 1024 + block_size, SEEK_SET);  /* position head above the group descriptor block */
 //    read(fd, &group, sizeof(group));
 //    bitmap = malloc(1024);    /* allocate memory for the bitmap */
-//    lseek(fd, BLOCK_BITMAP_BLOCKNO, SEEK_SET);
+    lseek(fd, BLOCK_BITMAP_BLOCKNO, 1024);
 //     /* read bitmap from disk */
 //
 //    for(int i = 0; i<2; i++){
