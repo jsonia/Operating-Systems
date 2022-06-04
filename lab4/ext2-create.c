@@ -429,9 +429,9 @@ void write_inode_table(int fd) {
     simlink_node.i_gid = 1000;
     simlink_node.i_links_count = 1;
     simlink_node.i_blocks = 0; /* These are oddly 512 blocks */
-    simlink_node.i_block[0] = 'hell';
-    simlink_node.i_block[1] = 'o-wo';
-    simlink_node.i_block[2] = 'rld';
+    simlink_node.i_block[0] = 'lleh';
+    simlink_node.i_block[1] = 'ow-o';
+    simlink_node.i_block[2] = 'dlr';
     
     
     
