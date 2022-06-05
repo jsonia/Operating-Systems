@@ -511,7 +511,7 @@ void write_lost_and_found_dir_block(int fd) {
 }
 
 void write_hello_world_file_block(int fd) {
-    unsigned char text[1024] = {0};
+    unsigned char text[1024] = {12};
         int c;
         for (c = 0; c < sizeof(text); c++) {
             text[c] = 0x00;
