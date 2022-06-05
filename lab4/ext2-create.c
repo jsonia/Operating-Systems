@@ -511,14 +511,12 @@ void write_lost_and_found_dir_block(int fd) {
 }
 
 void write_hello_world_file_block(int fd) {
-    //unsigned char text[12] = {0};
-     //   int c;
-     //   for (c = 0; c < sizeof(text); c++) {
-      //      text[c] = 0x00;
-      //  }
+    unsigned char text[12] = {0};
+        int c;
+//        for (c = 0; c < sizeof(text); c++) {
+//            text[c] = 0x00;
+//        }
         
-    unsigned char *text;
-    text = malloc(12);
         text[0] = 'H';
         text[1] = 'e';
         text[2] = 'l';
