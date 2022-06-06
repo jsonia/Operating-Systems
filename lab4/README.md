@@ -9,7 +9,7 @@ Explain briefly how to build your program.
 ## Running
 
 Show how to compile, mount, and example output of `ls -ain` your mounted
-filesystem.
+filesystem. \
 total 7 \
      2 drwxr-xr-x 3    0    0 1024 Jun  3 05:44 .  \
 942318 drwxr-xr-x 3 1000 1000 4096 Jun  3 05:44 ..  \
