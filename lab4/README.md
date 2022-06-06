@@ -1,15 +1,21 @@
 # Hey! I'm Filing Here
 
-One line description of this code.
+This assignment is about building ext2 file system
 
 ## Building
 
-Explain briefly how to build your program.
+`make` command is used to build the file system
 
 ## Running
 
-Show how to compile, mount, and example output of `ls -ain` your mounted
-filesystem. \
+`make` compile the executable \
+` ./ext2-create` run the executable to create cs111-base.img \
+`dumpe2fs cs111-base.img` dumps the filesystem information to help debug \
+`fsck.ext2 cs111-base.img` this will check that  filesystem is correct \
+ `mkdir mnt` create a directory to mnt  filesystem to \
+`sudo mount -o loop cs111-base.img mnt` mount your filesystem , loop lets us use a file \
+
+example output of `ls -ain`  mounted filesystem. \
 total 7 \
      2 drwxr-xr-x 3    0    0 1024 Jun  3 05:44 .  \
 942318 drwxr-xr-x 3 1000 1000 4096 Jun  3 05:44 ..  \
@@ -20,6 +26,8 @@ total 7 \
 
 
 ## Cleaning up
+`sudo umount mnt` unmount the filesystem when  done \
+`rmdir mnt` delete the directory used for mounting when  done \
+`make clean` to clean all the binary files
 
-Explain briefly how to unmount the filesystem, remove the mount directory, and
-clean up all binary files.
+
