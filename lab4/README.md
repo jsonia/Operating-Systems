@@ -13,7 +13,7 @@ This assignment is about building ext2 file system
 `dumpe2fs cs111-base.img` dumps the filesystem information to help debug \
 `fsck.ext2 cs111-base.img` this will check that  filesystem is correct \
  `mkdir mnt` create a directory to mnt  filesystem to \
-`sudo mount -o loop cs111-base.img mnt` mount your filesystem , loop lets us use a file \
+`sudo mount -o loop cs111-base.img mnt` mount the filesystem , loop lets us use a file \
 
 example output of `ls -ain`  mounted filesystem. \
 total 7 \
